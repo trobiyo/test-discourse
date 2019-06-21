@@ -38,7 +38,8 @@ class SiteSettings::DefaultsProvider
   end
 
   def get(name, locale = DEFAULT_LOCALE)
-    value = @defaults.dig(locale.to_sym, name.to_sym)
+    value = @defaults.dig(locale.to_sym, name.to_sym)    
+    puts "Value from DB: " + value.to_s
     return value unless value.nil?
 
     @defaults.dig(DEFAULT_LOCALE.to_sym, name.to_sym)
