@@ -101,10 +101,10 @@ module SeedData
       
       category_id = SiteSetting.get(site_setting_name)
 
-      puts "Category_ID: " + category_id
+      puts "Category_ID: " + category_id.to_s
 
       if should_create_category?(category_id, force_existence)
-        puts "should_create_category = true -> cat_id: " + category_id
+        puts "should_create_category = true -> cat_id: " + category_id.to_s
 
         category = Category.new(
           name: unused_category_name(category_id, name),
@@ -121,6 +121,7 @@ module SeedData
 
         SiteSetting.set(site_setting_name, category.id)
       elsif category = Category.find_by(id: category_id)
+        puts "should_create_category = false -> cat_id: " + category_id.to_s
         if description.present? && (category.topic_id.blank? || !Topic.exists?(category.topic_id))
           category.description = description
           category.create_category_definition
