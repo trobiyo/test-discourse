@@ -7,14 +7,16 @@ class SiteSettings::DefaultsProvider
   DEFAULT_LOCALE = 'en_US'
 
   def initialize(site_setting)
+    print site_setting.to_s
     @site_setting = site_setting
     @defaults = {}
     @defaults[DEFAULT_LOCALE.to_sym] = {}
   end
 
-  def load_setting(name_arg, value, locale_defaults)
+  def load_setting(name_arg, value, locale_defaults)    
     puts "Loading Settings..."
-    puts "name_arg: " + name_arg.to_s + " || value: "+ value.to_s + " || locale_defaults: " + locale_defaults.to_s
+    puts caller
+    #puts "name_arg: " + name_arg.to_s + " || value: "+ value.to_s + " || locale_defaults: " + locale_defaults.to_s
     name = name_arg.to_sym
     @defaults[DEFAULT_LOCALE.to_sym][name] = value
 
@@ -32,6 +34,7 @@ class SiteSettings::DefaultsProvider
   end
 
   def all(locale = nil)
+    puts "def all: " + locale.to_s
     if locale
       @defaults[DEFAULT_LOCALE.to_sym].merge(@defaults[locale.to_sym] || {})
     else
