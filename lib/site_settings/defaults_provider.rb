@@ -14,7 +14,7 @@ class SiteSettings::DefaultsProvider
 
   def load_setting(name_arg, value, locale_defaults)
     puts "Loading Settings..."
-    puts "name_arg: " + name_arg + " || value: "+ value + " || locale_defaults: " + locale_defaults
+    puts "name_arg: " + name_arg.to_s + " || value: "+ value.to_s + " || locale_defaults: " + locale_defaults.to_s
     name = name_arg.to_sym
     @defaults[DEFAULT_LOCALE.to_sym][name] = value
 
