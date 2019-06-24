@@ -13,6 +13,8 @@ class SiteSettings::DefaultsProvider
   end
 
   def load_setting(name_arg, value, locale_defaults)
+    puts "Loading Settings..."
+    puts "name_arg: " + name_arg + " || value: "+ value + " || locale_defaults: " + locale_defaults
     name = name_arg.to_sym
     @defaults[DEFAULT_LOCALE.to_sym][name] = value
 
@@ -39,7 +41,7 @@ class SiteSettings::DefaultsProvider
 
   def get(name, locale = DEFAULT_LOCALE)
     value = @defaults.dig(locale.to_sym, name.to_sym)    
-    puts "Name: " + name.to_s + "Value from DB: " + value.to_s
+    puts "Name: " + name.to_s + "|| Value from DB: " + value.to_s
     return value unless value.nil?
 
     @defaults.dig(DEFAULT_LOCALE.to_sym, name.to_sym)
